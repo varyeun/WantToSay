@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <EditText
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:hint="input title"/>
+    <EditText
+        android:id="@+id/context"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_gravity="center"
+        android:hint="input text"/>
+    <Button
+        android:id="@+id/input"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:background="@drawable/loginbutton"
+        android:text="input"
+        android:textColor="#ffffff"
+        android:textSize="16sp" />
+</LinearLayout>

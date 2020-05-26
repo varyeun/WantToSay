@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/container_text"
+        android:layout_margin="15dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="370dp"
+            android:layout_height="500dp"
+            android:id="@+id/tv_text"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:visibility="invisible"
+        android:layout_gravity="bottom"
+        android:id="@+id/container_contentbox"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:id="@+id/tv_translated"
+            android:background="@color/colorTmp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:text="발음연습"
+                android:id="@+id/btn_speakPractice"/>
+            <Button
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:text="발음듣기"
+                android:id="@+id/btn_speakListen"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_selected_text"
+            android:text=" "/>
+    </LinearLayout>
+</FrameLayout>
