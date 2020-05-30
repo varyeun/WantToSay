@@ -44,7 +44,8 @@ public class NewsClicked extends Activity {
 
         title =(TextView)findViewById(R.id.title);
         context =(TextView)findViewById(R.id.context);
-        title.setText(intent.getStringExtra("title"));
+        final String titleString = intent.getStringExtra("title");
+        title.setText(titleString);
         context.setText(intent.getStringExtra("context"));
 
         korean = (Button) findViewById(R.id.korean);
@@ -80,29 +81,9 @@ public class NewsClicked extends Activity {
         study.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v) {
-                        //SubActivity로 가는 인텐트를 생성
                         Intent intent = new Intent(getApplicationContext(), TextDoActivity.class);
-                        //액티비티 시작!
-//                        String s1 = en;
-//                        ArrayList a = new ArrayList();
-//                        StringTokenizer tokens = new StringTokenizer(s1, ".");
-//                        while (tokens.countTokens() != 0) {
-//                            a.add(tokens.nextToken() + ".");
-//                        }
-//                        a.remove(a.size() - 1);
+                        intent.putExtra("title",titleString);
                         intent.putExtra("en", en);
-
-//                        if(!ko.equals("")){
-//                            String s2 = ko;
-//                            ArrayList b = new ArrayList();
-//                            StringTokenizer token = new StringTokenizer(s2, ".");
-//                            while (token.countTokens() != 0) {
-//                                b.add(token.nextToken() + ".");
-//                            }
-//                            b.remove(b.size() - 1);
-//                            intent.putExtra("klist", b);
-//                        }
-
                         startActivity(intent);
                     }
                 }

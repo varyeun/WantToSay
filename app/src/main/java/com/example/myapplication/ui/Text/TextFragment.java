@@ -4,21 +4,22 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.ScrollView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.myapplication.R;
+import com.example.myapplication.ui.Video.VideoFragment;
+import com.example.myapplication.ui.Video.YoutubeListActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,11 +29,16 @@ public class TextFragment extends Fragment {
     private List<News> newsList;
     private Button search;
     private Button self;
-    private LinearLayout company1;
-    private LinearLayout company2;
-    private LinearLayout company3;
-    private LinearLayout company4;
-    private LinearLayout company5;
+    private EditText et_search;
+    private LinearLayout category1;
+    private LinearLayout category2;
+    private LinearLayout category3;
+    private LinearLayout category4;
+    private LinearLayout category5;
+    private LinearLayout category6;
+    private LinearLayout category7;
+    private LinearLayout category8;
+    private LinearLayout category9;
 
     private DashboardViewModel dashboardViewModel;
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -66,49 +72,91 @@ public class TextFragment extends Fragment {
         });
 
         //신문사버튼 활성
-        company1 = root.findViewById(R.id.company1);
-        company2 = root.findViewById(R.id.company2);
-        company3 = root.findViewById(R.id.company3);
-        company4 = root.findViewById(R.id.company4);
-        company5 = root.findViewById(R.id.company5);
-        company1.setOnClickListener(new View.OnClickListener() {
+        category1 = root.findViewById(R.id.category1);
+        category2 = root.findViewById(R.id.category2);
+        category3 = root.findViewById(R.id.category3);
+        category4 = root.findViewById(R.id.category4);
+        category5 = root.findViewById(R.id.category5);
+        category6 = root.findViewById(R.id.category6);
+        category7 = root.findViewById(R.id.category7);
+        category8 = root.findViewById(R.id.category8);
+        category9 = root.findViewById(R.id.category9);
+        category1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), KoreaTimesClicked.class);
+                Intent intent = new Intent(v.getContext(), CategoryClicked.class);
+                intent.putExtra("url","http://www.koreaherald.com/list.php?ct=020100000000");
                 startActivity(intent);
             }
         });
-        company2.setOnClickListener(new View.OnClickListener() {
+        category2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), ABCClicked.class);
+                Intent intent = new Intent(v.getContext(), CategoryClicked.class);
+                intent.putExtra("url","http://www.koreaherald.com/list.php?ct=020200000000");
                 startActivity(intent);
             }
         });
-        company3.setOnClickListener(new View.OnClickListener() {
+        category3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), KoreaHeraldClicked.class);
+                Intent intent = new Intent(v.getContext(), CategoryClicked.class);
+                intent.putExtra("url","http://www.koreaherald.com/list.php?ct=021900000000");
                 startActivity(intent);
             }
         });
-        company4.setOnClickListener(new View.OnClickListener() {
+        category4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), BBCClicked.class);
+                Intent intent = new Intent(v.getContext(), CategoryClicked.class);
+                intent.putExtra("url","http://www.koreaherald.com/list.php?ct=020300000000");
                 startActivity(intent);
             }
         });
-        company5.setOnClickListener(new View.OnClickListener() {
+        category5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), ReutersClicked.class);
+                Intent intent = new Intent(v.getContext(), CategoryClicked.class);
+                intent.putExtra("url","http://www.koreaherald.com/list.php?ct=020400000000");
+                startActivity(intent);
+            }
+        });
+        category6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), CategoryClicked.class);
+                intent.putExtra("url","http://www.koreaherald.com/list.php?ct=020500000000");
+                startActivity(intent);
+            }
+        });
+        category7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), CategoryClicked.class);
+                intent.putExtra("url","http://www.koreaherald.com/list.php?ct=021200000000");
+                startActivity(intent);
+            }
+        });
+        category8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), CategoryClicked.class);
+                intent.putExtra("url","http://www.koreaherald.com/list.php?ct=020600000000");
+                startActivity(intent);
+            }
+        });
+        category9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), CategoryClicked.class);
+                intent.putExtra("url","http://www.koreaherald.com/kpop");
                 startActivity(intent);
             }
         });
 
         //검색버튼 활성
-        search = (Button)root.findViewById(R.id.btnSearch);
+        search = (Button)root.findViewById(R.id.search);
+        et_search = root.findViewById(R.id.et_search);
         search.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -119,7 +167,7 @@ public class TextFragment extends Fragment {
         });
 
         //직접입력버튼 활성
-        self = (Button)root.findViewById(R.id.btnSelf);
+        self = (Button)root.findViewById(R.id.input);
         self.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -133,8 +181,17 @@ public class TextFragment extends Fragment {
     }
     private void search() {
 
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
-        startActivity(intent);
+        String text = et_search.getText().toString();
+        String url;
+        try {
+            url="http://www.koreaherald.com/search/index.php?kr=0&q="+text;
+            Intent intent = new Intent(getContext(), SearchNews.class);
+            intent.putExtra("url",url);
+            startActivity(intent);
+        }
+        catch (Exception e){
+
+        }
     }
     private void self() {
         Intent intent = new Intent(getContext(), SelfInput.class);
