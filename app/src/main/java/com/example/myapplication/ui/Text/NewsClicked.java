@@ -4,11 +4,15 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+
 import android.view.View;
 import android.widget.Button;
+
 import android.widget.TextView;
 
+import com.example.myapplication.PapagoAPI;
 import com.example.myapplication.R;
 import com.example.myapplication.Study;
 
@@ -23,6 +27,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
+import java.util.concurrent.ExecutionException;
 
 public class NewsClicked extends Activity {
 
@@ -37,31 +42,37 @@ public class NewsClicked extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.news_item);
 
         Intent intent=getIntent();
 
         title =(TextView)findViewById(R.id.title);
-        context =(TextView)findViewById(R.id.context);
-        final String titleString = intent.getStringExtra("title");
-        title.setText(titleString);
-        context.setText(intent.getStringExtra("context"));
+        context =findViewById(R.id.context);
+        //context.setMovementMethod(new ScrollingMovementMethod());
 
+        final String titleString = intent.getStringExtra("title");
         korean = (Button) findViewById(R.id.korean);
         english = (Button) findViewById(R.id.english);
         study = (Button) findViewById(R.id.study);
 
-        en=context.getText().toString();
+        en=intent.getStringExtra("context");
+
+        title.setText(titleString);
+        context.setText(en);
 
         //한글로 보기
         korean.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(ko.equals("")) {
-                    //파파고 연결
-//                    new BackgroundTask().execute();
-                    context.setText(ko);
+                    try {
+                        ko = new PapagoAPI().execute(en).get();
+                        context.setText(ko);
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
                 else{
                     context.setText(ko);
@@ -82,8 +93,9 @@ public class NewsClicked extends Activity {
                 new Button.OnClickListener() {
                     public void onClick(View v) {
                         Intent intent = new Intent(getApplicationContext(), TextDoActivity.class);
-                        intent.putExtra("title",titleString);
+                        intent.putExtra("title", titleString);
                         intent.putExtra("en", en);
+                        intent.putExtra("CP",0);
                         startActivity(intent);
                     }
                 }
